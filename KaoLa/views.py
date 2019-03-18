@@ -354,3 +354,17 @@ def pay(request):
     }
 
     return JsonResponse(data)
+
+
+def shopdel(request):
+    token=request.session.get('token')
+    userid = cache.get(token)
+    if userid:
+        user = User.objects.get(pk=userid)
+        goodsid = request.GET.get('goodsid')
+        goods = Goods.objects.get(pk=goodsid)
+        carts = Cart.objects.filter(user=user).filter(goods=goods).first()
+        carts.delete()
+        return JsonResponse({'status':1,'msg':'删除成功'})
+    else:
+        return JsonResponse({'status':0,'msg':"请登录"})

@@ -53,9 +53,21 @@ $(function () {
 
         })
     });
+    $('.delete-this').click(function () {
+       var goodsid=$(this).attr('goodsid')
+        data={
+           'goodsid':goodsid,
+        }
+        $.get('/kaola/shopdel/',data,function (response) {
+            if(response.status==1){
+                alert(response.msg)
+                location.reload()
+
+            }
+        })
+    })
 
     $('.new-checkbox').click(function () {
-
 
         var cartid = $(this).attr('cartid')
         console.log(cartid)

@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^cartsugoods/', views.catrsugoods, name='catrsugoods'),
     url(r'^appnotifyurl/', views.appnotifyurl, name='appnotifyurl'),
     url(r'^pay/', views.pay, name='pay'),
+    url(r'^shopdel/',views.shopdel,name='shopdel'),
 ]
