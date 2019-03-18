@@ -16,8 +16,10 @@
 
         {% endfor %}
     </ul>
-  <button style="width: 100px;height: 50px">支付</button>
+  <button  id="btu" style="width: 100px;height: 50px" orderid="{{ order.id }}">支付</button>
 </div>
-
+<script src="/static/js/vendor/jquery-3.1.0.min.js" charset="utf-8"></script>
+<script src="/static/js/vendor/jquery.cookie.js" charset="utf-8"></script>
+<script src="/static/js/order.js"></script>
 </body>
 </html>

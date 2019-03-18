@@ -2,12 +2,16 @@ import hashlib
 import random
 
 import time
+from urllib.parse import parse_qs
+
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.core.cache import cache
+from django.views.decorators.csrf import csrf_exempt
 
+from KaoLa.alipay import alipay
 from KaoLa.models import Wheel, Goods, User, Cart, OrderGoods, Order
 
 
@@ -132,26 +136,25 @@ def logout(request):
 
 def addcart(request):
     token = request.session.get('token')
-    if token:
-        userid = cache.get(token)
-        if userid:
-            user = User.objects.get(pk=userid)
-            num = request.GET.get('num')
-            goodsid = request.GET.get('goodsid')
-            goods = Goods.objects.get(pk=goodsid)
-            carts = Cart.objects.filter(user=user).filter(goods=goods)
-            if carts.exists():
-                cart = carts.first()
-                cart.number = cart.number + int(num)
-                cart.save()
+    userid = cache.get(token)
+    if userid:
+        user = User.objects.get(pk=userid)
+        num = request.GET.get('num')
+        goodsid = request.GET.get('goodsid')
+        goods = Goods.objects.get(pk=goodsid)
+        carts = Cart.objects.filter(user=user).filter(goods=goods)
+        if carts.exists():
+            cart = carts.first()
+            cart.number = cart.number + int(num)
+            cart.save()
 
-            else:
-                cart = Cart()
-                cart.user = user
-                cart.goods = goods
-                cart.number = int(num)
-                cart.save()
-            return JsonResponse({'msg': '添加成功', 'status': 1, 'number': cart.number})
+        else:
+            cart = Cart()
+            cart.user = user
+            cart.goods = goods
+            cart.number = int(num)
+            cart.save()
+        return JsonResponse({'msg': '添加成功', 'status': 1, 'number': cart.number})
 
     else:
         return JsonResponse({'msg': '请登录', 'status': 0})
@@ -300,3 +303,52 @@ def catrsugoods(request):
             cart.number = cart.number - 1
             cart.save()
             return JsonResponse({'status': 1, 'number': cart.number})
+
+
+@csrf_exempt
+def appnotifyurl(request):
+    if request.method == 'POST':
+
+        body_str = request.body.decode('utf-8')
+
+        post_data = parse_qs(body_str)
+
+        post_dic = {}
+        for k, v in post_data.items():
+            post_dic[k] = v[0]
+
+
+        out_trade_no = post_dic['out_trade_no']
+
+
+        Order.objects.filter(identifier=out_trade_no).update(status=1)
+
+    return JsonResponse({'msg': 'success'})
+
+
+def pay(request):
+    orderid = request.GET.get('orderid')
+    order = Order.objects.get(pk=orderid)
+
+    name = None
+    for orderGoods in order.ordergoods_set.all():
+        name =orderGoods.goods.name
+
+    # 支付地址信息
+    data = alipay.direct_pay(
+        subject=name,  # 显示标题
+        out_trade_no=order.identifier,  # 爱鲜蜂 订单号
+        total_amount=str(0.1),  # 支付金额
+        return_url='http://http://119.23.45.140/kaola/index/'
+    )
+
+    # 支付地址
+    alipay_url = 'https://openapi.alipaydev.com/gateway.do?{data}'.format(data=data)
+
+    data = {
+        'msg': '调用支付接口',
+        'alipayurl': alipay_url,
+        'status': 1
+    }
+
+    return JsonResponse(data)

@@ -17,7 +17,9 @@ urlpatterns = [
     url(r'^orderdetail/(.*)/', views.orderdetail, name='orderdetail'),
     url(r'^orderlist/', views.orderlist, name='orderlist'),
     url(r'^generateorder/', views.generateorder, name='generateorder'),
-    url(r'^shoporder/',views.shoporder,name='shoporder'),
+    url(r'^shoporder/', views.shoporder, name='shoporder'),
     url(r'^cartaddgoods/', views.cartaddgoods, name='cartaddgoods'),
-    url(r'^cartsugoods/',views.catrsugoods,name='catrsugoods')
+    url(r'^cartsugoods/', views.catrsugoods, name='catrsugoods'),
+    url(r'^appnotifyurl/', views.appnotifyurl, name='appnotifyurl'),
+    url(r'^pay/', views.pay, name='pay'),
 ]

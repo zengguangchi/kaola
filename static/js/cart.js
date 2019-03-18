@@ -109,7 +109,7 @@ function total() {
             console.log(num)
             var price =$csa.find('.new-price').attr('price')
             console.log(price)
-            sum += num * price
+            sum +=  * 
             console.log(sum)
         }
         $('.total-goods-money').html(parseInt(sum))

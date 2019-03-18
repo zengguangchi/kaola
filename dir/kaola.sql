@@ -33,7 +33,7 @@ CREATE TABLE `KaoLa_cart` (
   KEY `KaoLa_cart_user_id_63dadaa1_fk_KaoLa_user_id` (`user_id`),
   CONSTRAINT `KaoLa_cart_goods_id_8587c0e2_fk_KaoLa_goods_id` FOREIGN KEY (`goods_id`) REFERENCES `KaoLa_goods` (`id`),
   CONSTRAINT `KaoLa_cart_user_id_63dadaa1_fk_KaoLa_user_id` FOREIGN KEY (`user_id`) REFERENCES `KaoLa_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `KaoLa_goods` (
 
 LOCK TABLES `KaoLa_goods` WRITE;
 /*!40000 ALTER TABLE `KaoLa_goods` DISABLE KEYS */;
-INSERT INTO `KaoLa_goods` VALUES (30,'img/forshow/id1/imq4k7dr86_800_800(3).jpg','img/forshow/id1/imq4k7dr86_800_800(1).jpg','img/forshow/id1/imq4k7dr86_800_800.jpg','BIO ISLAND 佰澳朗德','BIO ISLAND 佰澳朗德 孕妇可用婴幼儿DHA海藻油 60粒/瓶 2瓶','每个孕妈在怀孕期间都会流失大量的DHA，比如视力明显减退，记忆力降低等等。但是盲目补充DHA会造成孩子性早熟。bioIsland 海藻油提取DHA是绝对可以放心。听说用了它的妈妈，孩子眼珠亮，有神！','￥208.00','￥435'),(31,'img/forshow/id2/it2nijp097_800_800.jpg','img/forshow/id2/it2nil4k46_800_800(1).jpg','img/forshow/id/img/forshow/id2/it2nil4k46_800_800(2).jpg','贝拉米','贝拉米 有机奶粉1段 900克/罐 3罐装','全球知名有机奶粉之一，“世界尽头”南澳岛屿有机牧场奶源，由澳洲有机认证机构监控，天然安全。网易考拉远赴澳洲采购，只为给宝宝带来新鲜高品质的好奶粉。','￥447.00','￥447'),(32,'img/forshow/id3/onlinei2wnr43h10006.jpg','img/forshow/id3/onlineic46traw10011(1).jpg','img/forshow/id3/onlineic46traw10011(2).jpg','Merries 花王妙而舒','Merries 花王妙而舒 NB 90片/包 4包装 纸尿裤/尿不湿 ','来自日本的纸尿裤，是受日本国人欢迎的纸尿裤品牌之一，花王纸尿裤注重通气性和柔软性，使用极细纤维柔软内衬棉，尿显精确，防漏护围设计，确保不含甲醛、不用燃料，控制PH值。','￥316.00','￥596'),(33,'img/forshow/id4/9a57da45-b6f8-4cc9-b371-86b0b8f49d5c.jpg','img/forshow/id4/533e6e4c-b5fa-4bef-b0a1-a3c835a18089(1).jpg','img/forshow/id4/533e6e4c-b5fa-4bef-b0a1-a3c835a18089(2).jpg','ledibaby 乐蒂宝贝','ledibaby 乐蒂宝贝 提篮式安全座椅婴 儿提篮摇篮睡篮 美国队长 3C','升级安全座椅减200元,头枕全新升级,布料细腻柔软透气适合新生宝宝娇嫩的肌肤，遮阳蓬设计防晒防紫外线，通过ECE和3C认证，根据宝宝人体工学给宝宝最舒适的姿势；多种功能：可当做婴儿提篮、汽车安全座椅、摇篮使用。','￥388.00','￥998'),(34,'img/forshow/id5/ipic1de757_800_800.jpg','img/forshow/id5/ipic1de757_800_800(1).jpg','img/forshow/id5/ipic1de757_800_800(2).jpg','akasugu 新生','akasugu 新生 POSTAR 儿童星星立体徽章雨鞋 雨季必备 黄色','None','￥165.00','￥225');
+INSERT INTO `KaoLa_goods` VALUES (30,'img/forshow/id1/imq4k7dr86_800_800(3).jpg','img/forshow/id1/imq4k7dr86_800_800(1).jpg','img/forshow/id1/imq4k7dr86_800_800.jpg','BIO ISLAND 佰澳朗德','BIO ISLAND 佰澳朗德 孕妇可用婴幼儿DHA海藻油 60粒/瓶 2瓶','每个孕妈在怀孕期间都会流失大量的DHA，比如视力明显减退，记忆力降低等等。但是盲目补充DHA会造成孩子性早熟。bioIsland 海藻油提取DHA是绝对可以放心。听说用了它的妈妈，孩子眼珠亮，有神！','208.00','435'),(31,'img/forshow/id2/it2nijp097_800_800.jpg','img/forshow/id2/it2nil4k46_800_800(1).jpg','img/forshow/id/img/forshow/id2/it2nil4k46_800_800(2).jpg','贝拉米','贝拉米 有机奶粉1段 900克/罐 3罐装','全球知名有机奶粉之一，“世界尽头”南澳岛屿有机牧场奶源，由澳洲有机认证机构监控，天然安全。网易考拉远赴澳洲采购，只为给宝宝带来新鲜高品质的好奶粉。','447.00','447'),(32,'img/forshow/id3/onlinei2wnr43h10006.jpg','img/forshow/id3/onlineic46traw10011(1).jpg','img/forshow/id3/onlineic46traw10011(2).jpg','Merries 花王妙而舒','Merries 花王妙而舒 NB 90片/包 4包装 纸尿裤/尿不湿 ','来自日本的纸尿裤，是受日本国人欢迎的纸尿裤品牌之一，花王纸尿裤注重通气性和柔软性，使用极细纤维柔软内衬棉，尿显精确，防漏护围设计，确保不含甲醛、不用燃料，控制PH值。','316.00','596'),(33,'img/forshow/id4/9a57da45-b6f8-4cc9-b371-86b0b8f49d5c.jpg','img/forshow/id4/533e6e4c-b5fa-4bef-b0a1-a3c835a18089(1).jpg','img/forshow/id4/533e6e4c-b5fa-4bef-b0a1-a3c835a18089(2).jpg','ledibaby 乐蒂宝贝','ledibaby 乐蒂宝贝 提篮式安全座椅婴 儿提篮摇篮睡篮 美国队长 3C','升级安全座椅减200元,头枕全新升级,布料细腻柔软透气适合新生宝宝娇嫩的肌肤，遮阳蓬设计防晒防紫外线，通过ECE和3C认证，根据宝宝人体工学给宝宝最舒适的姿势；多种功能：可当做婴儿提篮、汽车安全座椅、摇篮使用。','388.00','998'),(34,'img/forshow/id5/ipic1de757_800_800.jpg','img/forshow/id5/ipic1de757_800_800(1).jpg','img/forshow/id5/ipic1de757_800_800(2).jpg','akasugu 新生','akasugu 新生 POSTAR 儿童星星立体徽章雨鞋 雨季必备 黄色','None','165.00','225');
 /*!40000 ALTER TABLE `KaoLa_goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +93,7 @@ CREATE TABLE `KaoLa_order` (
   PRIMARY KEY (`id`),
   KEY `KaoLa_order_user_id_8ebe9a4e_fk_KaoLa_user_id` (`user_id`),
   CONSTRAINT `KaoLa_order_user_id_8ebe9a4e_fk_KaoLa_user_id` FOREIGN KEY (`user_id`) REFERENCES `KaoLa_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `KaoLa_ordergoods` (
   KEY `KaoLa_ordergoods_order_id_ac73e411_fk_KaoLa_order_id` (`order_id`),
   CONSTRAINT `KaoLa_ordergoods_goods_id_23bf4a5a_fk_KaoLa_goods_id` FOREIGN KEY (`goods_id`) REFERENCES `KaoLa_goods` (`id`),
   CONSTRAINT `KaoLa_ordergoods_order_id_ac73e411_fk_KaoLa_order_id` FOREIGN KEY (`order_id`) REFERENCES `KaoLa_order` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -462,7 +462,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('vwv36kblvtyeffk3jaxoycsgrj44uqkq','YTU2ZTQ0ZTQ4MDNjMDZlMjYzN2UzZWYxOTlmNDhkMmVjN2NkMTMyNTp7InRva2VuIjoiNzJjN2I1M2E2YmI5MWVhM2NhNjE5NTkyYjU0ZWQ3MTAifQ==','2019-03-30 06:04:57.100894');
+INSERT INTO `django_session` VALUES ('n4nu3utd9m3ckzqbnmr2c488akf6gx2x','ZDgyYWYwZWU5NDVjNTcwM2ViMDYyMjBhY2ViZTFiMjYzNDRhMDEzNTp7InRva2VuIjoiNGQ1MWJiMWJlMTJkYzU1OWU4OWRjZDM0ZTEzNDZmZTMifQ==','2019-03-31 04:13:22.172780');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -475,4 +475,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-16 14:11:48
+-- Dump completed on 2019-03-18 12:47:26
