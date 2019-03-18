@@ -1,54 +1,62 @@
 $(function () {
-     total()
+    total()
+
     $(".reduce-goods-num").click(function () {
+        var $that = $(this)
         var goodsid = $(this).attr('goodsid')
         console.log(goodsid)
-        console.log($(this).next().html())
-        var $that = $(this)
         data = {
-            'goodsid': goodsid
+            'goodsid': goodsid,
+
         }
 
         $.get('/kaola/cartsugoods/', data, function (response) {
             console.log(response)
             if (response.status == 1) {
-                if (response.number > 1) {
-                    $that.next().html(response.number)
-                } else {
-                    // $that.parents($('list_content_ul clearfix')).remove()
-                    location.reload()
+                if (response.number){
+                      $that.next().val(response.number)
+                }
+                else {
+                    $that.next().hide()
+                    $that.hide()
                 }
                  total()
-                location.reload()
+                }
 
-            }
+
+            // location.reload()
 
 
         })
         console.log('减操作')
     });
     $(".increase-goods-num").click(function () {
+
         var goodsid = $(this).attr('goodsid')
-        console.log(goodsid)
-        console.log($(this).prev().html())
+
         console.log('加操作')
         var $that = $(this)
         data = {
-            'goodsid': goodsid
+            'goodsid': goodsid,
         }
         $.get('/kaola/cartaddgoods/', data, function (response) {
             console.log(response)
             if (response.status == 1) {
-                $that.prev().html(response.number)
+                console.log(response.number)
+                $that.prev().val(response.number)
+                $that.prev().show()
+                $that.prev().prev().show()
 
             }
-             total()
-            location.reload()
+            total()
+            // location.reload()
 
         })
     });
 
     $('.new-checkbox').click(function () {
+
+
         var cartid = $(this).attr('cartid')
         console.log(cartid)
         var $this = $(this)
@@ -96,33 +104,33 @@ $(function () {
             }
 
 
-    })
-});
+        })
+    });
 
-function total() {
-    var sum = 0
-    $('.goods-item').each(function () {
-        var $cso = $(this)
-        var $csa = $(this)
-        if ($cso.find('.ok').length) {
-            var num = $csa.find('.this-goods-num').attr('value')
-            console.log(num)
-            var price =$csa.find('.new-price').attr('price')
-            console.log(price)
-            sum +=  * 
-            console.log(sum)
-        }
-        $('.total-goods-money').html(parseInt(sum))
-    })
-}
-$('#btn-total-pay').click(function () {
-    $.get('/kaola/generateorder/',function (response) {
-        if(response.status==1){
-            window.open('/kaola/orderdetail/'+response.identifier+'/',target = '_self')
-        }
-    })
-})
+    function total() {
+        var sum = 0
+        $('.goods-item').each(function () {
+            var $cso = $(this)
+            var $csa = $(this)
+            if ($cso.find('.ok').length) {
+                var num = $csa.find('.this-goods-num').attr('value')
+                console.log(num)
+                var price = $csa.find('.new-price').attr('price')
+                console.log(price)
+                sum += parseInt(num) * parseInt(price)
+                console.log(sum)
+            }
+            $('.total-goods-money').html(parseInt(sum))
+        })
+    }
 
+    $('#btn-total-pay').click(function () {
+        $.get('/kaola/generateorder/', function (response) {
+            if (response.status == 1) {
+                window.open('/kaola/orderdetail/' + response.identifier + '/', target = '_self')
+            }
+        })
+    })
 
 
 })

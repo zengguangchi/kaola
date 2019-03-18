@@ -180,9 +180,9 @@ def chakanall(request):
     user = User.objects.get(pk=userid)
     carts = user.cart_set.all()
     if isall == "true":
-        isall = False
-    else:
         isall = True
+    else:
+        isall =False
 
     for cart in carts:
         cart.isselect = isall
@@ -285,7 +285,7 @@ def cartaddgoods(request):
         carts = Cart.objects.filter(user=user).filter(goods=goods)
         if carts.exists():
             cart = carts.first()
-            cart.number = cart.number + 1
+            cart.number =cart.number+1
             cart.save()
             return JsonResponse({'status': 1, 'number': cart.number})
 
@@ -300,10 +300,12 @@ def catrsugoods(request):
         carts = Cart.objects.filter(user=user).filter(goods=goods)
         if carts.exists():
             cart = carts.first()
-            cart.number = cart.number - 1
+            cart.number =cart.number-1
+
             cart.save()
             return JsonResponse({'status': 1, 'number': cart.number})
-
+    else:
+        return JsonResponse({'status':0})
 
 @csrf_exempt
 def appnotifyurl(request):
@@ -334,11 +336,11 @@ def pay(request):
     for orderGoods in order.ordergoods_set.all():
         name =orderGoods.goods.name
 
-    # 支付地址信息
+
     data = alipay.direct_pay(
-        subject=name,  # 显示标题
-        out_trade_no=order.identifier,  # 爱鲜蜂 订单号
-        total_amount=str(0.1),  # 支付金额
+        subject=name,
+        out_trade_no=order.identifier,
+        total_amount=str(0.1),
         return_url='http://http://119.23.45.140/kaola/index/'
     )
 
