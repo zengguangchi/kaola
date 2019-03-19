@@ -368,3 +368,7 @@ def shopdel(request):
         return JsonResponse({'status':1,'msg':'删除成功'})
     else:
         return JsonResponse({'status':0,'msg':"请登录"})
+
+
+def code(request):
+    return render(request,'code.html')

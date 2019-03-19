@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^appnotifyurl/', views.appnotifyurl, name='appnotifyurl'),
     url(r'^pay/', views.pay, name='pay'),
     url(r'^shopdel/',views.shopdel,name='shopdel'),
+    url(r'^code/',views.code,name='code')
 ]

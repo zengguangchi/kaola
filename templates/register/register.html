@@ -111,6 +111,14 @@
                     </div>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
+                 <div class="form-group has-feedback" id="code">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">验证码</span>
+                        <input type="text" class="form-control" placeholder="验证码"  maxlength="11"  id="inputCode" >
+                    </div>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div id="checkCode"  class="code" ></div>
                 <div id="subButton" class="btn btn-success">注册</div>
             </form>
         </div>
@@ -136,10 +144,42 @@
     </ul>
     <span>网易公司版权所有 &copy;1997-2016</span>
 </footer>
+
 <script src="{% static 'js/vendor/jquery-3.1.0.min.js' %}" charset="utf-8"></script>
 <script src="{% static 'js/vendor/jquery.cookie.js' %}" charset="utf-8"></script>
 <script src="{% static 'js/register.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>   window.onload=function(){
+     createCode(4);
+function createCode(length) {
+        var code = "";
+        var codeLength = parseInt(length); //验证码的长度
+        var checkCode = document.getElementById("checkCode");
+        ////所有候选组成验证码的字符，当然也可以用中文的
+        var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+        //循环组成验证码的字符串
+        for (var i = 0; i < codeLength; i++)
+        {
+            //获取随机验证码下标
+            var charNum = Math.floor(Math.random() * 62);
+            //组合成指定字符验证码
+            code += codeChars[charNum];
+        }
+        if (checkCode)
+        {
+            //为验证码区域添加样式名
+            checkCode.className = "code";
+            //将生成验证码赋值到显示区
+            checkCode.innerHTML = code;
+        }
+    }
+    $('#checkCode').click(function () {
+        createCode(4);
+    })
 
+
+    }</script>
 </body>
 </html>
